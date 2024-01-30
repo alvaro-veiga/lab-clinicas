@@ -1,0 +1,3 @@
+#json_rest_server
+
+dart pub global activate json_rest_server

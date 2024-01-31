@@ -1,4 +1,4 @@
-library fe_lab_clinicas_core;
+library lab_core;
 
 
 export 'src/fp/either.dart';

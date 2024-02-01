@@ -1,3 +1,4 @@
+// classe selada para representar o padrão de tratativa de erros Either
 sealed class Either <L, R> {}
 
 class Left <L, R> extends Either <L, R> {

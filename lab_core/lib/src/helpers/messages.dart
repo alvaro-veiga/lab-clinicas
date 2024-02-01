@@ -3,6 +3,9 @@ import 'package:signals_flutter/signals_flutter.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+
+//classe para exibir mensagens na tela
+
 final class Messages {
   static void showError(String message, BuildContext context) {
     showTopSnackBar(
@@ -25,6 +28,7 @@ final class Messages {
 }
 
 
+//mixin para gerenciar mensagens
 
 mixin MessageStateMixin{
   final Signal<String?> _errorMessage = signal(null);
@@ -65,6 +69,7 @@ mixin MessageStateMixin{
   }
 }
 
+//mixin para exibir mensagens na tela
 mixin MessagesViewMixin <T extends StatefulWidget> on State<T> {
   void messageListener(MessageStateMixin state) {
     effect(() {

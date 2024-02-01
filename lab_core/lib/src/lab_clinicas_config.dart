@@ -1,5 +1,8 @@
+import 'package:asyncstate/widget/async_state_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
+import 'package:lab_core/src/loader/lab_clinicas_loader.dart';
+
 
 // configuração do core para aplicações externas
 class LabClinicasCoreConfig extends StatelessWidget {
@@ -11,7 +14,7 @@ class LabClinicasCoreConfig extends StatelessWidget {
     this.bindings,
     this.pages,
     this.pagesBuilder,
-    required this.modules,
+    this.modules,
     required this.title,
     });
   
@@ -35,6 +38,10 @@ class LabClinicasCoreConfig extends StatelessWidget {
     return FlutterGetIt(
       debugMode: true,
 
+      bindingsBuilder: () => [
+        Bind.lazySingleton((i) => 'batata')
+      ],
+
       // adiciona as dependências para a aplicação
       bindings: bindings,
 
@@ -45,12 +52,22 @@ class LabClinicasCoreConfig extends StatelessWidget {
       modules: modules,
       
       builder: (context, routes, flutterGetItNavObserver) {
-        // retorna o MaterialApp com as rotas e o observer para checar a navegação do 
-        // usuário sobre as aplicações
-        return MaterialApp(
-          navigatorObservers: [flutterGetItNavObserver],
-          routes: routes,
-          title: title,
+        // retorna o MaterialApp com as rotas e o observer para checar a navegação do
+        return AsyncStateBuilder(
+
+          // adiciona o loader para carregar as dependências
+          loader: LabClinicasLoader(),
+          
+          // adiciona o observer para checar a navegação do usuário sobre as aplicações
+          builder: (navigationObserver) {
+            // retorna o MaterialApp com as rotas e o observer para checar a navegação do 
+            // usuário sobre as aplicações
+            return MaterialApp(
+              navigatorObservers: [navigationObserver],
+              routes: routes,
+              title: title,
+            );
+          }
         );
       },
     );

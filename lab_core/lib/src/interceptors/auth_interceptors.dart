@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lab_core/src/constants/local_storage_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -11,7 +12,7 @@ final class AuthInteceptor extends Interceptor {
     
     //desestrutra as opções de o interceptador do dio para extrair os headers e o extra
     final RequestOptions(:headers, :extra) = options;
-    
+
     //chave do header de autenticação
     const authHeaderKey = 'Authorization';
     
@@ -22,7 +23,7 @@ final class AuthInteceptor extends Interceptor {
     if (extra case {'DIO_AUTH_KEY': true}) {
       final sp = await SharedPreferences.getInstance();
       headers.addAll({
-        authHeaderKey: '${sp.getString('cwsMXDtuP447WZQ63nM4dWZ3RppyMl')}'
+        authHeaderKey: '${sp.getString(LocalStorageConstants.accesstoken)}'
       });
     }
     //chama o método onRequest do super para continuar a requisição

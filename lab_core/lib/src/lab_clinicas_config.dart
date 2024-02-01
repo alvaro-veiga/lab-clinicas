@@ -1,10 +1,11 @@
-import 'package:asyncstate/widget/async_state_builder.dart';
+import 'package:asyncstate/asyncstate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getit/flutter_getit.dart';
 import 'package:lab_core/src/loader/lab_clinicas_loader.dart';
 
 
 // configuração do core para aplicações externas
+// ignore: must_be_immutable
 class LabClinicasCoreConfig extends StatelessWidget {
 
   // no flutter getit, as dependências(bindings) são injetadas através de um singleton que é

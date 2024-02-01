@@ -7,6 +7,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:lab_core/src/interceptors/auth_interceptors.dart';
 
 //classe para requisição http com o dio
 final class RestClient extends DioForNative {
@@ -23,7 +24,17 @@ final class RestClient extends DioForNative {
         //tempo de resposta da aplicação
         receiveTimeout: const Duration(seconds: 60)
       )
-    );
+    ){
+      //adiciona o interceptador de autenticação
+      interceptors.addAll([
+        //printa o log da requisição
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true, 
+        ),
+        AuthInteceptor(),
+      ]);
+    }
   
   //requisição autenticada
   RestClient get auth {

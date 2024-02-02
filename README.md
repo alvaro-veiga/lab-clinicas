@@ -1,6 +1,6 @@
-# Nome do Projeto
+# Sobre o Projeto
 
-Lab-clinicas. Estrutura desenvolvida em dart para para suprir necessidades de outras aplicações
+Lab-clinicas. Estrutura desenvolvida em dart para para suprir necessidades de outras aplicações.
 
 ## Pré-requisitos
 
